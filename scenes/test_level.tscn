@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2vrkgx8r0sau" path="res://scenes/frog.tscn" id="1_gojnm"]
 [ext_resource type="PackedScene" uid="uid://cps8ucrltwt10" path="res://scenes/pullable_object.tscn" id="2_1c2mv"]
+[ext_resource type="PackedScene" uid="uid://byjickow3f4eu" path="res://scenes/goal.tscn" id="3_j6w7d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ajwad"]
 size = Vector3(12, 0.5, 12)
@@ -51,3 +52,30 @@ shape = SubResource("BoxShape3D_bb56b")
 
 [node name="PullableObject" parent="." unique_id=1633778880 instance=ExtResource("2_1c2mv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.2, -3)
+
+[node name="Goal" parent="." unique_id=978872437 node_paths=PackedStringArray("win_screen") instance=ExtResource("3_j6w7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.009, 0, 4.088)
+win_screen = NodePath("../CanvasLayer/WinScreen")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1872242600]
+
+[node name="WinScreen" type="ColorRect" parent="CanvasLayer" unique_id=2112434204]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54901963)
+
+[node name="Label" type="Label" parent="CanvasLayer/WinScreen" unique_id=1501839092]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
