@@ -19,6 +19,9 @@ size = Vector3(3, 1, 1)
 [node name="TestLevel" type="Node3D" unique_id=233422262]
 
 [node name="Frog" parent="." unique_id=1670517848 node_paths=PackedStringArray("camera") instance=ExtResource("1_gojnm")]
+allow_turning_while_hopping = true
+allow_steering_while_hopping = true
+allow_actions_while_hopping = true
 camera = NodePath("../Camera3D")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=1180698977]
