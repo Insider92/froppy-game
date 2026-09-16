@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dl7s5wbms7j0d"]
+
+[ext_resource type="PackedScene" uid="uid://d2vrkgx8r0sau" path="res://scenes/frog.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://cps8ucrltwt10" path="res://scenes/pullable_object.tscn" id="2_1c2mv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajwad"]
+size = Vector3(12, 0.5, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajwad"]
+size = Vector3(12, 0.5, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rxyb3"]
+size = Vector3(3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bb56b"]
+size = Vector3(3, 1, 1)
+
+[node name="TestLevel" type="Node3D" unique_id=233422262]
+
+[node name="Frog" parent="." unique_id=1670517848 node_paths=PackedStringArray("camera") instance=ExtResource("1_gojnm")]
+camera = NodePath("../Camera3D")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1180698977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=551876600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06766868, -0.02461958, -0.060239792)
+mesh = SubResource("BoxMesh_ajwad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=776468415]
+shape = SubResource("BoxShape3D_ajwad")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=413094129]
+transform = Transform3D(0.70710677, -0.40860704, 0.5770964, 0, 0.8161376, 0.5778576, -0.70710677, -0.40860704, 0.5770964, 10, 10, 10)
+projection = 1
+current = true
+size = 18.0
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1157811228]
+transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.86602545, -0.5, -0.75, 0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=1125072041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=9780618]
+mesh = SubResource("BoxMesh_rxyb3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1805635055]
+shape = SubResource("BoxShape3D_bb56b")
+
+[node name="PullableObject" parent="." unique_id=1633778880 instance=ExtResource("2_1c2mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.2, -3)

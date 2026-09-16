@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cps8ucrltwt10"]
+
+[ext_resource type="Script" uid="uid://4c0ygne21xd1" path="res://scripts/pullable_object.gd" id="1_cbquq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vfpv"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajwad"]
+material = SubResource("StandardMaterial3D_1vfpv")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajwad"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6ekd3"]
+radius = 0.8
+
+[node name="PullableObject" type="RigidBody3D" unique_id=1032437860 groups=["tongue_pullable"]]
+script = ExtResource("1_cbquq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1735243988]
+mesh = SubResource("BoxMesh_ajwad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=670047785]
+shape = SubResource("BoxShape3D_ajwad")
+
+[node name="TongueHitbox" type="Area3D" parent="." unique_id=570748728]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TongueHitbox" unique_id=1909976361]
+shape = SubResource("SphereShape3D_6ekd3")
+
+[node name="TongueAnchor" type="Marker3D" parent="." unique_id=1191411000]

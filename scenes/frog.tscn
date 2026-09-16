@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://d2vrkgx8r0sau"]
+
+[ext_resource type="Script" uid="uid://cf8fs21qmtwgo" path="res://scripts/frog.gd" id="1_whe2r"]
+[ext_resource type="PackedScene" uid="uid://j8ww30gp3d4h" path="res://assets/froppy.glb" id="2_6ekd3"]
+[ext_resource type="Texture2D" uid="uid://btgkn15k1f5js" path="res://assets/effects/tremble_lines.svg" id="3_slgur"]
+[ext_resource type="Script" uid="uid://bhdc1btif05l8" path="res://scripts/tongue_controller.gd" id="4_byod8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ajwad"]
+radius = 0.35
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ekd3"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ajwad"]
+material = SubResource("StandardMaterial3D_6ekd3")
+top_radius = 0.035
+bottom_radius = 0.035
+height = 1.0
+radial_segments = 12
+
+[sub_resource type="Animation" id="Animation_6ekd3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShakePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShakePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite3D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_slgur"]
+resource_name = "mouth_full_shake"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShakePivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.15, 0.22, 0.29, 0.36, 0.43, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.015, -0.01, 0), Vector3(0.015, 0.005, 0), Vector3(-0.012, -0.005, 0), Vector3(0.012, 0.005, 0), Vector3(-0.008, 0, 0), Vector3(0.006, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShakePivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.15, 0.22, 0.29, 0.36, 0.43, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.043633234, 0.017453292), Vector3(0, 0.04363323, -0.017453292), Vector3(0, -0.034906585, 0.013962634), Vector3(0, 0.034906585, -0.013962634), Vector3(0, -0.02617994, 0.008726646), Vector3(0, 0.017453292, -0.006981317), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite3D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.15, 0.22, 0.29, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.04, 0.97, 1), Vector3(0.97, 1.04, 1), Vector3(1.04, 0.97, 1), Vector3(0.97, 1.04, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_byod8"]
+_data = {
+&"RESET": SubResource("Animation_6ekd3"),
+&"mouth_full_shake": SubResource("Animation_slgur")
+}
+
+[node name="Frog" type="CharacterBody3D" unique_id=1670517848]
+script = ExtResource("1_whe2r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=543378953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_ajwad")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=706115969]
+
+[node name="ShakePivot" type="Node3D" parent="Visuals" unique_id=1058430884]
+
+[node name="Froppy" parent="Visuals/ShakePivot" unique_id=1813037085 instance=ExtResource("2_6ekd3")]
+
+[node name="MouthCarryPoint" type="Marker3D" parent="Visuals/ShakePivot" unique_id=247680760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036239237, 0.634786, -0.23998302)
+
+[node name="TongueOrigin" type="Marker3D" parent="Visuals" unique_id=1619387758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, -0.34)
+
+[node name="TongueRay" type="RayCast3D" parent="Visuals/TongueOrigin" unique_id=67622436]
+target_position = Vector3(0, 0, -3)
+collide_with_areas = true
+
+[node name="TongueMesh" type="MeshInstance3D" parent="Visuals/TongueOrigin" unique_id=483357923]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_ajwad")
+
+[node name="FeedbackAnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=1393291434]
+libraries/ = SubResource("AnimationLibrary_byod8")
+
+[node name="Sprite3D" type="Sprite3D" parent="Visuals" unique_id=864190824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+visible = false
+modulate = Color(1, 0.81960785, 0.4, 1)
+pixel_size = 0.002
+billboard = 1
+no_depth_test = true
+texture = ExtResource("3_slgur")
+
+[node name="TongueController" type="Node3D" parent="." unique_id=838157455 node_paths=PackedStringArray("tongue_origin", "tongue_ray", "tongue_mesh", "mouth_carry_point")]
+script = ExtResource("4_byod8")
+tongue_origin = NodePath("../Visuals/TongueOrigin")
+tongue_ray = NodePath("../Visuals/TongueOrigin/TongueRay")
+tongue_mesh = NodePath("../Visuals/TongueOrigin/TongueMesh")
+mouth_carry_point = NodePath("../Visuals/ShakePivot/MouthCarryPoint")

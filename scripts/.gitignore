@@ -1,0 +1,22 @@
+# Godot 4 generated/imported data
+.godot/
+
+# Local export credentials
+export_credentials.cfg
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.tmp
+*.log
+
