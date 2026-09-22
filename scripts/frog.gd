@@ -37,6 +37,9 @@ var air_steering_acceleration: float = 6.0
 	$Visuals/FeedbackAnimationPlayer
 )
 @onready var tongue: TongueController = $TongueController
+@onready var hop_visual_animator: HopVisualAnimator = (
+	$Visuals/ShakePivot/HopVisualPivot
+)
 
 var action_active: bool = false
 var hop_pause_remaining: float = 0.0
@@ -96,6 +99,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		hop_pause_remaining = hop_landing_pause
+		
+		hop_visual_animator.play_land()
 
 
 func _handle_action_input() -> void:
@@ -184,6 +189,8 @@ func _update_movement(delta: float) -> void:
 	velocity.y = sqrt(
 		2.0 * gravity_strength * hop_height
 	)
+	
+	hop_visual_animator.play_takeoff()
 
 
 func _update_aim(delta: float) -> void:

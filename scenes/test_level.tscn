@@ -11,14 +11,15 @@ size = Vector3(12, 0.5, 12)
 size = Vector3(12, 0.5, 12)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rxyb3"]
-size = Vector3(3, 1, 1)
+size = Vector3(6, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bb56b"]
-size = Vector3(3, 1, 1)
+size = Vector3(6, 1, 1)
 
 [node name="TestLevel" type="Node3D" unique_id=233422262]
 
 [node name="Frog" parent="." unique_id=1670517848 node_paths=PackedStringArray("camera") instance=ExtResource("1_gojnm")]
+move_speed = 2.5
 allow_turning_while_hopping = true
 allow_steering_while_hopping = true
 allow_actions_while_hopping = true
@@ -45,7 +46,7 @@ transform = Transform3D(0.8660254, -0.43301272, 0.24999999, 0, 0.49999997, 0.866
 shadow_enabled = true
 
 [node name="Wall" type="StaticBody3D" parent="." unique_id=1125072041]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9610682, 0.5, 2.0746117)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=9780618]
 mesh = SubResource("BoxMesh_rxyb3")
@@ -53,8 +54,17 @@ mesh = SubResource("BoxMesh_rxyb3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1805635055]
 shape = SubResource("BoxShape3D_bb56b")
 
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1916120970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9063334, 0.5, 2.11)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2" unique_id=100636009]
+mesh = SubResource("BoxMesh_rxyb3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=1082323668]
+shape = SubResource("BoxShape3D_bb56b")
+
 [node name="PullableObject" parent="." unique_id=1633778880 instance=ExtResource("2_1c2mv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.2, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48472452, 0.2, 2.3614306)
 
 [node name="Goal" parent="." unique_id=978872437 node_paths=PackedStringArray("win_screen") instance=ExtResource("3_j6w7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.009, 0, 4.088)

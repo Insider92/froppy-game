@@ -7,10 +7,10 @@ albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ajwad"]
 material = SubResource("StandardMaterial3D_1vfpv")
-size = Vector3(0.4, 0.4, 0.4)
+size = Vector3(0.6, 0.6, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ajwad"]
-size = Vector3(0.4, 0.4, 0.4)
+size = Vector3(0.6, 0.6, 0.6)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6ekd3"]
 radius = 0.8

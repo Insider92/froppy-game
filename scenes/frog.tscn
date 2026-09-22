@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cf8fs21qmtwgo" path="res://scripts/frog.gd" id="1_whe2r"]
 [ext_resource type="PackedScene" uid="uid://j8ww30gp3d4h" path="res://assets/froppy.glb" id="2_6ekd3"]
+[ext_resource type="Script" uid="uid://cbf8467buus7j" path="res://scripts/hop_visual_animator.gd" id="2_ybftx"]
 [ext_resource type="Texture2D" uid="uid://btgkn15k1f5js" path="res://assets/effects/tremble_lines.svg" id="3_slgur"]
 [ext_resource type="Script" uid="uid://bhdc1btif05l8" path="res://scripts/tongue_controller.gd" id="4_byod8"]
 
@@ -128,7 +129,7 @@ _data = {
 &"mouth_full_shake": SubResource("Animation_slgur")
 }
 
-[node name="Frog" type="CharacterBody3D" unique_id=1670517848]
+[node name="Frog" type="CharacterBody3D" unique_id=1670517848 groups=["player"]]
 script = ExtResource("1_whe2r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=543378953]
@@ -139,16 +140,21 @@ shape = SubResource("CapsuleShape3D_ajwad")
 
 [node name="ShakePivot" type="Node3D" parent="Visuals" unique_id=1058430884]
 
-[node name="Froppy" parent="Visuals/ShakePivot" unique_id=1813037085 instance=ExtResource("2_6ekd3")]
-
 [node name="MouthCarryPoint" type="Marker3D" parent="Visuals/ShakePivot" unique_id=247680760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036239237, 0.634786, -0.23998302)
+
+[node name="HopVisualPivot" type="Node3D" parent="Visuals/ShakePivot" unique_id=2011182973]
+script = ExtResource("2_ybftx")
+takeoff_stretch_duration = 0.11
+
+[node name="Froppy" parent="Visuals/ShakePivot/HopVisualPivot" unique_id=1813037085 instance=ExtResource("2_6ekd3")]
 
 [node name="TongueOrigin" type="Marker3D" parent="Visuals" unique_id=1619387758]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, -0.34)
 
 [node name="TongueRay" type="RayCast3D" parent="Visuals/TongueOrigin" unique_id=67622436]
 target_position = Vector3(0, 0, -3)
+hit_from_inside = true
 collide_with_areas = true
 
 [node name="TongueMesh" type="MeshInstance3D" parent="Visuals/TongueOrigin" unique_id=483357923]
